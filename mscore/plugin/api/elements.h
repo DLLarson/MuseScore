@@ -114,6 +114,42 @@ class Element : public Ms::PluginAPI::ScoreElement {
        * \since MuseScore 3.3
        */
       Q_PROPERTY(qreal posY READ posY)
+      /**
+       * Spatium value for this element.
+       *
+       * \since MuseScore 3.3
+       */
+      Q_PROPERTY(qreal spatium READ spatium)
+      /**
+       * pos value for this element.
+       *
+       * \since MuseScore 3.3
+       */
+      Q_PROPERTY(QPointF pos READ pos)
+      /**
+       * Bounding box for this element.
+       *
+       * \since MuseScore 3.3
+       */
+      Q_PROPERTY(QRectF boundBox READ boundBox)
+      /**
+       * Canvas position for this element.
+       *
+       * \since MuseScore 3.3
+       */
+      Q_PROPERTY(QPointF canvasPos READ canvasPos)
+      /**
+       * Page bounding rectangle for this element.
+       *
+       * \since MuseScore 3.3
+       */
+      Q_PROPERTY(QRectF pageBoundingRect READ pageBoundingRect)
+      /**
+       * Canvas bounding rectangle for this element.
+       *
+       * \since MuseScore 3.3
+       */
+      Q_PROPERTY(QRectF canvasBoundingRect READ canvasBoundingRect)
 
       API_PROPERTY( subtype,                 SUBTYPE                   )
       API_PROPERTY_READ_ONLY_T( bool, selected, SELECTED               )
@@ -354,6 +390,13 @@ class Element : public Ms::PluginAPI::ScoreElement {
 
       qreal posX() const { return element()->pos().x() / element()->spatium(); }
       qreal posY() const { return element()->pos().y() / element()->spatium(); }
+
+      qreal spatium() const { return element()->spatium(); }
+      QPointF pos() const { return element()->pos(); }
+      QRectF boundBox() const { return element()->bbox(); }
+      QPointF canvasPos() const { return element()->canvasPos(); }
+      QRectF pageBoundingRect() const { return element()->pageBoundingRect(); }
+      QRectF canvasBoundingRect() const { return element()->canvasBoundingRect(); }
 
       Ms::PluginAPI::Element* parent() const { return wrap(element()->parent()); }
 
