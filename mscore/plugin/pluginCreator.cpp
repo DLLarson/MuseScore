@@ -369,7 +369,7 @@ void PluginCreator::runClicked()
       item->runPlugin();
       if (mscore->currentScore() && item->pluginType() != "dock")
             mscore->currentScore()->endCmd();
-      mscore->endCmd();
+      //@@@@@@@@ mscore->endCmd();
       // Main window is on top at this point. Make sure correct view is on top.
       if (item->pluginType() == "dock") {
             raise(); // Screen needs to be on top to see docked panel.

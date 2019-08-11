@@ -57,7 +57,8 @@ class ScoreElement : public QObject {
 
       /// \cond MS_INTERNAL
    protected:
-      Ms::ScoreElement* const e;
+      //@@@@Ms::ScoreElement* const e;
+      QPointer<Ms::ScoreElement> e;
 
    public:
       ScoreElement(Ms::ScoreElement* _e = nullptr, Ownership own = Ownership::PLUGIN)
@@ -68,9 +69,11 @@ class ScoreElement : public QObject {
 
       Ownership ownership() const { return _ownership; }
       void setOwnership(Ownership o) { _ownership = o; }
+      //@@@@@@@@ NEVER CALLED
+      //@@@@@@@@ Ms::ScoreElement* element() { return e; };
+      //@@@@@@@@ const Ms::ScoreElement* element() const { return e; };
 
-      Ms::ScoreElement* element() { return e; };
-      const Ms::ScoreElement* element() const { return e; };
+      void unwrap() { e.clear(); }      //@@@@@@@@  // Remove association with internal object.
 
       QString name() const;
       int type() const;

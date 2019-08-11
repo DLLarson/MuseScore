@@ -196,6 +196,7 @@ void PluginAPI::removeElement(Ms::PluginAPI::Element* wrapped)
       {
       Ms::Score* score = wrapped->element()->score();
       score->deleteItem(wrapped->element());
+      wrapped->unwrap();      // The object is now dead to us.
       }
 
 //---------------------------------------------------------
