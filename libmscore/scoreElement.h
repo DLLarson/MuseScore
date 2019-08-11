@@ -169,7 +169,7 @@ struct ElementName {
 //   ScoreElement
 //---------------------------------------------------------
 
-class ScoreElement {
+class ScoreElement : public QObject {
       Score* _score;
       static ElementStyle const emptyStyle;
 

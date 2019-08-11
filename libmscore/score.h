@@ -358,7 +358,8 @@ class Movements : public std::vector<MasterScore*> {
 //    a Score has always an associated MasterScore
 //---------------------------------------------------------------------------------------
 
-class Score : public QObject, public ScoreElement {
+//@@@@@@ class Score : public QObject, public ScoreElement {
+class Score : public ScoreElement {
       Q_OBJECT
 
    public:

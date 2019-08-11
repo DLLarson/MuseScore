@@ -119,12 +119,16 @@ void Chord::add(Ms::PluginAPI::Element* wrapped)
 void Chord::remove(Ms::PluginAPI::Element* wrapped)
       {
       Ms::Element* s = wrapped->element();
-      if (s->parent() != chord())
+      if (!s)
+            qWarning("PluginAPI::Chord::remove: The element does not exist anymore.");
+      else if (s->parent() != chord())
             qWarning("PluginAPI::Chord::remove: The element is not a child of this chord. Use removeElement() instead.");
       else if (chord()->notes().size() <= 1 && s->type() == ElementType::NOTE)
             qWarning("PluginAPI::Chord::remove: Removal of final note is not allowed.");
-      else if (s)
+      else if (s) {
             chord()->score()->deleteItem(s); // Create undo op and remove the element.
+            wrapped->unwrap();
+            }
       }
 
 
